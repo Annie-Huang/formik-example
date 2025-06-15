@@ -8,3 +8,4 @@ https://github.com/Annie-Huang/formik-example
 PS C:\react> npm create vite@latest formik-example -- --template react-ts
 PS C:\react\formik-example> prettier . --write
 PS C:\react\formik-example> npm install formik
+PS C:\react\formik-example> npm install yup
