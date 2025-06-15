@@ -1,5 +1,5 @@
 import './App.css';
-import { useFormik } from 'formik';
+import { ErrorMessage, Field, Form, Formik, useFormik } from 'formik';
 import * as Yup from 'yup';
 
 type Errors = {
@@ -9,8 +9,27 @@ type Errors = {
 };
 
 function App() {
+  // ------------------- Version 4 ---------------------------
+  const initialValues = {
+    email: '',
+    username: '',
+    password: '',
+  };
+
+  const onSubmit = (values) => {
+    console.log('onSubmit', values);
+  };
+
+  const validationSchema = Yup.object({
+    email: Yup.string()
+      .required('Email is required')
+      .email('Invalid email address'),
+    password: Yup.string().required('Password is required'),
+    username: Yup.string().required('Username is required'),
+  });
+
   // ------------------- Version 3 ---------------------------
-  const formik = useFormik({
+  /*  const formik = useFormik({
     initialValues: {
       email: '',
       username: '',
@@ -26,7 +45,7 @@ function App() {
       password: Yup.string().required('Password is required'),
       username: Yup.string().required('Username is required'),
     }),
-  });
+  });*/
 
   // ------------------- Version 2 ---------------------------
   /*
@@ -55,7 +74,44 @@ function App() {
   });
 */
 
-  // ------------------- Version 3 ---------------------------
+  // ------------------- Version 4 template ---------------------------
+  return (
+    <div>
+      <h1>Hello monsterlessons</h1>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={onSubmit}
+        validationSchema={validationSchema}
+      >
+        {() => (
+          <Form>
+            <div className='field'>
+              <Field name='email' placeholder='Email' />
+              <div className='error'>
+                <ErrorMessage name='email' component='span'></ErrorMessage>
+              </div>
+            </div>
+            <div className='field'>
+              <Field name='username' placeholder='Username' />
+              <div className='error'>
+                <ErrorMessage name='username' component='span'></ErrorMessage>
+              </div>
+            </div>
+            <div className='field'>
+              <Field name='password' placeholder='Password' type='password' />
+              <div className='error'>
+                <ErrorMessage name='password' component='span'></ErrorMessage>
+              </div>
+            </div>
+            <button type='submit'>Submit</button>
+          </Form>
+        )}
+      </Formik>
+    </div>
+  );
+
+  // ------------------- Version 3 template ---------------------------
+  /*
   return (
     <div>
       <h1>Hello monsterlessons</h1>
@@ -104,8 +160,9 @@ function App() {
       </form>
     </div>
   );
+*/
 
-  // ------------------- Version 2 ---------------------------
+  // ------------------- Version 2 template ---------------------------
   /*  return (
     <div>
       <h1>Hello monsterlessons</h1>
@@ -155,7 +212,7 @@ function App() {
     </div>
   );*/
 
-  // ------------------- Version 1 ---------------------------
+  // ------------------- Version 1 template ---------------------------
   /*  return (
     <div>
       <h1>Hello monsterlessons</h1>
