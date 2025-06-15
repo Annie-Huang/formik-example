@@ -1,0 +1,9 @@
+Formik - Building React Forms easier (https://www.youtube.com/watch?v=khGypss-RJs)
+
+https://github.com/monsterlessonsacademy/monsterlessonsacademy/tree/251-formik
+https://github.com/Annie-Huang/formik-example
+
+-----------------------------------------------------------
+
+PS C:\react> npm create vite@latest formik-example -- --template react-ts
+
